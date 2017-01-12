@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+  <html lang="zh-en">
+    <head>
+      <title>生日祝福</title>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+      <meta id="myviewport" name="viewport" content="width=1024,user-scalable=yes"/>
+      <style type="text/css">
+        body{
+          background: #ee9ca7;
+          background: -webkit-linear-gradient(top left, #ee9ca7 0%, #ee9ca7 100%);
+          background: linear-gradient(to bottom right, #ee9ca7 0%, #ee9ca7 100%);
+          background-color:rgba(255,255,255,0.9);
+        }
+
+        *{
+          margin: 0 auto;
+          padding: 0;
+          font-family: "Microsoft YaHei","sans-serif";
+        }
+        .container{
+          width: 500px;
+
+          height: auto;
+        }
+
+        .text{
+
+          text-align: center;
+          margin-bottom: 15px;
+        }
+        .btn{
+          margin-right: 30px;
+          float: right;
+        }
+        #messageList{
+
+          width: 100%;
+
+          height: 100%;
+
+        }
+
+        .txt{
+          color: gray;
+          opacity: 0.8;
+          filter:alpha(opacity=0.8);
+        }
+      </style>
+      <script type="text/javascript">
+     /**
+     *文档加载完后，运行名为func的函数
+
+     *@param func 需要运行的函数的名
+     *说明：window.onload事件处理函数的值存入变量oldonload;如果函数上没有绑定任何函数，则正常添
+     *加；若已经绑定有函数，则添加到指令末尾。
+     */
+
+     function addLoadEvent(func)
+     {
+       var oldonload = window.onload; //得到上一个onload事件的函数
+        if(typeof window.onload != 'function')
+        {
+            window.onload = func;
+        }
+        else
+        {
+           window.onload = function()
+            {
+              oldonload(); //调用之前覆盖的onload事件的函数
+              func(); //调用当前事件函数
+           }
+
+        }
+
+     }
+     function getMessage(){
+        var btn = document.getElementById("btn1");
+        var message = document.getElementById("message");
+        var name = document.getElementById("name");
+        var nameValue = "";
+        var messageValue = "";
+        name.onfocus = function(){
+          name.value="";
+        }
+        message.onfocus = function(){
+          message.value="";
+        }
+
+        btn.onclick = function(){
+          messageValue =  message.value || "我的小站：www.ido321.com" ; //设置默认值
+          nameValue = name.value || "dwqs";
+          var msgList = document.getElementById("messageList");
+          var msgDiv = document.createElement("div");
+          var msgTxt = document.createTextNode(nameValue+"："+messageValue);
+          msgDiv.appendChild(msgTxt);
+          msgList.appendChild(msgDiv);
+        }
+      }
+      addLoadEvent(getMessage);
+      </script>
+     </head>
+     <body>
+        <div class="container">
+          <div class="content">
+
+          <!-- <form action="?" method="?"> -->
+             <div class="text">
+                    <label for="message">生日祝福</label>
+             </div>
+                <div class="text" style="margin-left:-75px">
+                  <label for="name">名字：</label>
+                  <input type="text" id="name" value="" class="txt">
+             </div>
+                <div class="text">
+                  <textarea rows="5" cols="30" id="message" value="" class="txt">送上祝福</textarea>
+                </div>
+          <div class="btn">
+          <!-- <input type="submit" id="submit" value="提交留言"> -->
+                   <button id="btn1">提交</button>
+          </div>
+             <!-- </form> -->
+          </div>
+          <h3 style="clear:right">祝福列表</h3>
+          <hr/>
+          <div class="messageList" id="messageList">
+          </div>
+        </div>
+     </body>
+</html>
